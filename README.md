@@ -1,21 +1,22 @@
 # Skills
 
-Claude Code skills I build and use day to day. I'll post new ones here as I create them.
+Agent skills I build and use day to day. I'll post new ones here as I create them.
 
-Each directory is a self-contained skill: drop it into `~/.claude/skills/` and Claude Code
-picks it up automatically.
+Each directory is a self-contained skill: drop it into `~/.claude/skills/` for Claude Code, or
+`~/.agents/skills/` for Cursor, and the agent picks it up automatically.
 
 ## Skills
 
 | Skill | What it does |
 |---|---|
-| [claude-grill-me](./claude-grill-me) | Stress-tests a plan by grilling you, using Claude Code's native multiple-choice question UI. A fork of [mattpocock/skills](https://github.com/mattpocock/skills)' `grill-me`. |
+| [claude-grill-me](./claude-grill-me) | Stress-tests a plan by grilling you through the agent's native multiple-choice question UI. Works in Claude Code and Cursor. A fork of [mattpocock/skills](https://github.com/mattpocock/skills)' `grill-me`. |
 
 ## Installing
 
 ```bash
 git clone https://github.com/ManishJain0/skills.git
-cp -r skills/claude-grill-me ~/.claude/skills/
+cp -r skills/claude-grill-me ~/.claude/skills/   # Claude Code
+cp -r skills/claude-grill-me ~/.agents/skills/   # Cursor
 ```
 
 ## Credits

@@ -11,7 +11,7 @@ This is not hostile debate. It is calibrated pressure at a fixed setting: **expe
 
 ## Core Rules
 
-- Ask one question at a time, via the `AskUserQuestion` tool. Never print questions as prose (see Escape Hatches for the exceptions).
+- Ask one question at a time, via the host's ask-questions tool — `AskUserQuestion` in Claude Code, the equivalent ask questions tool in Cursor. Never print questions as prose (see Escape Hatches for the exceptions).
 - Every question carries a recommended answer as its first option.
 - If the answer is in files, code, docs, issues, or logs, read those first instead of asking.
 - Skip domain basics. The user knows the terrain — pressure-test tradeoffs and the implementation path instead.
@@ -22,7 +22,7 @@ This is not hostile debate. It is calibrated pressure at a fixed setting: **expe
 
 ## Asking A Question
 
-Each question is one `AskUserQuestion` call with a single question:
+Each question is one ask-questions call carrying a single question. Map the pieces onto whatever the host's tool calls them; the field names below are Claude Code's:
 
 | Piece | Field |
 |---|---|
