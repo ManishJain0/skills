@@ -1,4 +1,4 @@
-# claude-grill-me
+# grill-me-native
 
 A fork of [`grill-me`](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md)
 by [Matt Pocock](https://github.com/mattpocock), tweaked so that the agent **asks its questions
@@ -36,16 +36,16 @@ decision before you've committed to an answer.
 Claude Code:
 
 ```bash
-cp -r claude-grill-me ~/.claude/skills/
+cp -r grill-me-native ~/.claude/skills/
 ```
 
 Cursor:
 
 ```bash
-cp -r claude-grill-me ~/.agents/skills/
+cp -r grill-me-native ~/.agents/skills/
 ```
 
-Then say "grill me" or run `/claude-grill-me`.
+Then say "grill me" or run `/grill-me-native`.
 
 ## Credit and licence
 

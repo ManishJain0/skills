@@ -9,21 +9,21 @@ Each directory is a self-contained skill: drop it into `~/.claude/skills/` for C
 
 | Skill | What it does |
 |---|---|
-| [claude-grill-me](./claude-grill-me) | Stress-tests a plan by grilling you through the agent's native multiple-choice question UI. Works in Claude Code and Cursor. A fork of [mattpocock/skills](https://github.com/mattpocock/skills)' `grill-me`. |
+| [grill-me-native](./grill-me-native) | Stress-tests a plan by grilling you through the agent's native multiple-choice question UI. Works in Claude Code and Cursor. A fork of [mattpocock/skills](https://github.com/mattpocock/skills)' `grill-me`. |
 
 ## Installing
 
 ```bash
 git clone https://github.com/ManishJain0/skills.git
-cp -r skills/claude-grill-me ~/.claude/skills/   # Claude Code
-cp -r skills/claude-grill-me ~/.agents/skills/   # Cursor
+cp -r skills/grill-me-native ~/.claude/skills/   # Claude Code
+cp -r skills/grill-me-native ~/.agents/skills/   # Cursor
 ```
 
 ## Credits
 
-`claude-grill-me` is derived from the `grill-me` skill in
+`grill-me-native` is derived from the `grill-me` skill in
 [mattpocock/skills](https://github.com/mattpocock/skills) (MIT, Copyright (c) 2026 Matt Pocock).
-See [claude-grill-me/README.md](./claude-grill-me/README.md) for what changed.
+See [grill-me-native/README.md](./grill-me-native/README.md) for what changed.
 
 ## Licence
 

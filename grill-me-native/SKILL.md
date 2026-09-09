@@ -1,9 +1,9 @@
 ---
-name: claude-grill-me
-description: Grills a plan, design, or decision through Claude Code's interactive multiple-choice UI — one question at a time, each with a recommended option. Assumes an expert user at standard pressure; focuses on requirements and implementation, not edge cases. Use when the user says "claude grill me", "grill me", "stress-test this", "challenge my plan", or invokes /claude-grill-me.
+name: grill-me-native
+description: Grills a plan, design, or decision through the agent's native interactive multiple-choice UI (Claude Code or Cursor) — one question at a time, each with a recommended option. Assumes an expert user at standard pressure; focuses on requirements and implementation, not edge cases. Use when the user says "grill me", "grill me native", "stress-test this", "challenge my plan", or invokes /grill-me-native.
 ---
 
-# Claude Grill Me
+# Grill Me Native
 
 Interview the user until the task requirements and implementation path are clear and defensible.
 
