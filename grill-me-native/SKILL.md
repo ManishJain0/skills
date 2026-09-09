@@ -11,7 +11,7 @@ This is not hostile debate. It is calibrated pressure at a fixed setting: **expe
 
 ## Core Rules
 
-- Ask one question at a time, via the host's ask-questions tool — `AskUserQuestion` in Claude Code, the equivalent ask questions tool in Cursor. Never print questions as prose (see Escape Hatches for the exceptions).
+- **Call `AskUserQuestion`. Every question, no exceptions.** One question per call. Never print a question as prose (see Escape Hatches for the only two exemptions).
 - Every question carries a recommended answer as its first option.
 - If the answer is in files, code, docs, issues, or logs, read those first instead of asking. Read the implementation surface **to find what to ask about**, not only to avoid asking.
 - Skip domain basics. The user knows the terrain — pressure-test tradeoffs and the implementation path instead.
@@ -22,7 +22,7 @@ This is not hostile debate. It is calibrated pressure at a fixed setting: **expe
 
 ## Asking A Question
 
-Each question is one ask-questions call carrying a single question. Map the pieces onto whatever the host's tool calls them; the field names below are Claude Code's:
+Each `AskUserQuestion` call carries a single question, built like this:
 
 | Piece | Field |
 |---|---|
@@ -32,6 +32,7 @@ Each question is one ask-questions call carrying a single question. Map the piec
 | Why it matters, in one sentence | that option's `description` |
 | Realistic alternatives | remaining options |
 | Single-answer (always, for grilling) | `multiSelect: false` — required field |
+| `file:line` behind a Contract Reality question | that option's `description` — never the label |
 
 Constraints: 2–4 options, labels 1–5 words, nuance goes in `description` not the label. Never add an "Other" option — free text is always offered automatically.
 
@@ -56,14 +57,20 @@ Build this privately, one question at a time. Use it to choose the next question
 
 Not optional, and it happens before question one. Open every file the plan says it will edit,
 delete or extend, plus the base class or vendor contract of anything it subclasses, overrides or
-registers against. Record privately:
+registers against.
+
+**This pass produces no user-visible output.** Findings stay private notes and reach the user only
+as question options on the Contract Reality rung. Do not narrate the pass and do not list what you
+found — the first thing the user sees after it is an `AskUserQuestion` call.
+
+Record privately:
 
 - Symbols the plan names that do not exist, or exist with a different signature.
 - What the base class already does that the plan duplicates, or must not override.
 - A second producer or consumer of any shape the plan changes.
 - Anything the plan asserts without a `file:line` you were able to confirm.
 
-Findings here feed the Contract Reality rung. A plan that reads clean at spec level routinely
+Findings here become Contract Reality questions. A plan that reads clean at spec level routinely
 fails here.
 
 ## Phase 3: Question Ladder
@@ -117,7 +124,10 @@ Questions on this rung come **only** from the Ground Pass, never from the plan's
 Fall back to prose instead of the tool when:
 
 - The question is genuinely open-ended and options would distort it — e.g. "what should I grill?" with no context in the session.
-- You need to state a correction or an observation rather than ask something.
+- You need to correct something *you* said earlier.
+
+An observation is never a substitute for a question. State it in one line, then immediately call
+the tool. Ground Pass findings are not an exemption — they are what the next question is about.
 
 ## When To Stop
 
@@ -129,5 +139,11 @@ End with:
 - Remaining open questions.
 - Next concrete action.
 
-Every finding you report cites `file:line`. Anything you could not verify is labelled unverified
-rather than stated.
+In this closing summary, cite `file:line` for every claim about the code, and label anything you
+could not verify as unverified rather than stating it. Mid-grill, the same evidence goes in an
+option's `description`, not in prose.
+
+---
+
+Written for Claude Code's `AskUserQuestion`. Cursor exposes an equivalent ask-questions tool to
+skills; there, call that tool instead — the field names may differ, the structure does not.
