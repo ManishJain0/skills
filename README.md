@@ -2,8 +2,8 @@
 
 Agent skills I build and use day to day. I'll post new ones here as I create them.
 
-Each directory is a self-contained skill: drop it into `~/.claude/skills/` for Claude Code, or
-`~/.agents/skills/` for Cursor, and the agent picks it up automatically.
+Each directory is a self-contained skill. Drop it where your agent looks for skills and it gets
+picked up automatically.
 
 ## Skills
 
@@ -14,19 +14,21 @@ Each directory is a self-contained skill: drop it into `~/.claude/skills/` for C
 
 ## Installing
 
+Copy the skills you want:
+
 ```bash
 git clone https://github.com/ManishJain0/skills.git
 cp -r skills/grill-me-native ~/.claude/skills/   # Claude Code
 cp -r skills/grill-me-native ~/.agents/skills/   # Cursor
 ```
 
-Or symlink the whole repo once and every skill in it loads:
+Copy individual skills rather than symlinking the whole repo to `~/.claude/skills`. Recent Claude
+Code builds ship their own `grill-me-native` and `session-discipline` under the `anthropic-skills:`
+prefix, and a repo-wide symlink registers a second copy of each — both show up in the skills list
+and the built-in one wins.
 
-```bash
-ln -s "$PWD/skills" ~/.claude/skills
-```
-
-Skills that ship a hook need one extra step — see that skill's own README.
+Skills that ship a hook need one extra step — see that skill's own README. Wire hooks by absolute
+path in `~/.claude/settings.json`, not through a symlink, so they survive the skill moving.
 
 ## Adding a skill to claude.ai
 
@@ -39,27 +41,6 @@ zip -r session-discipline.zip session-discipline -x '*.DS_Store'
 
 Hooks are Claude Code only and do not run there, so any skill that ships one must still
 work without it. If a skill delegates to another skill, upload both.
-
-## House rules for new skills
-
-Every skill added to this repo follows these. No exceptions without a reason written down.
-
-1. **Grill before building.** Run `grill-me-native` on the idea first. Define the problem,
-   the trigger, and the enforcement mechanism before a line of the skill is written.
-2. **One directory, self-contained.** `SKILL.md` at its root, plus a `README.md` covering
-   what it does and how to install it. Hooks and helper scripts live in `hooks/`.
-3. **Frontmatter earns its trigger.** The `description` is the only thing the model sees
-   when deciding to load the skill — spell out the concrete phrases and situations that
-   should fire it, not a summary of the body.
-4. **Degrade gracefully.** Assume no hook, no sibling skill, no shell. Say in `SKILL.md`
-   what changes when a dependency is missing.
-5. **Hooks stay silent and never block.** Exit 0 on every path — bad input, missing `jq`,
-   unreadable transcript. Fire at most once per session. Test the silent, firing, repeat,
-   and garbage-input cases before wiring it into `settings.json`.
-6. **Ship the claude.ai path.** Verify the zip's root is the skill folder, and note in the
-   README what is lost without hooks.
-7. **Update this README** — the table above and, when the install story changes, the
-   sections around it — in the same commit that adds the skill.
 
 ## Credits
 
