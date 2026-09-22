@@ -1,0 +1,30 @@
+{
+  "name": "manishjain0-skills",
+  "owner": {
+    "name": "ManishJain0",
+    "url": "https://github.com/ManishJain0"
+  },
+  "plugins": [
+    {
+      "name": "grill-me-native",
+      "source": "./grill-me-native",
+      "description": "Stress-tests a plan by grilling you through the agent's native multiple-choice question UI.",
+      "strict": false,
+      "skills": ["."]
+    },
+    {
+      "name": "session-discipline",
+      "source": "./session-discipline",
+      "description": "Gates any 2+ file change behind a grill-me-native session and calls compact-vs-new-chat past ~150k tokens.",
+      "strict": false,
+      "skills": ["."]
+    },
+    {
+      "name": "php-83-to-85",
+      "source": "./php-83-to-85",
+      "description": "Scans a PHP 8.3 codebase for PHP 8.4 and 8.5 incompatible changes and deprecations and writes a compatibility report.",
+      "strict": false,
+      "skills": ["."]
+    }
+  ]
+}

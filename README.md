@@ -12,7 +12,23 @@ picked up automatically.
 | [grill-me-native](./grill-me-native) | Stress-tests a plan by grilling you through the agent's native multiple-choice question UI. Works in Claude Code and Cursor. A fork of [mattpocock/skills](https://github.com/mattpocock/skills)' `grill-me`. |
 | [session-discipline](./session-discipline) | Gates any 2+ file change behind a `grill-me-native` session, and calls compact-vs-new-chat with a handoff prompt once the session passes ~150k tokens. Ships a `UserPromptSubmit` hook for the token tripwire. |
 | [php-83-to-85](./php-83-to-85) | Scans a PHP 8.3 codebase for PHP 8.4 and 8.5 incompatible changes and deprecations, using grep, PHPStan and Rector against the official migration pages, and writes a compatibility report. Fixes only the items you confirm. |
+
 ## Installing
+
+### As a plugin marketplace
+
+The repo is a Claude Code plugin marketplace; each skill is its own plugin.
+
+```bash
+/plugin marketplace add ManishJain0/skills
+/plugin install php-83-to-85@manishjain0-skills
+```
+
+On a Team or Enterprise plan, an admin can sync the repo for the whole org from
+`claude.ai/admin-settings/plugins` → **Add plugins** → **Sync from GitHub**. Merges to `main` then
+reach everyone.
+
+### By copying
 
 Copy the skills you want:
 
