@@ -11,8 +11,8 @@ P0. These throw, warn as a behavior change, or change a return value on 8.5. Cod
 | 85i-gc-return | `gc_collect_cycles()` no longer counts strings and resources collected indirectly | `gc_collect_cycles(` | Do not assert on the old count |
 | 85i-disable-classes | `disable_classes` ini is removed | `disable_classes` | Remove the ini setting |
 | 85i-destructure | `[]` or `list()` on a non-array other than `null` warns | `list(` | Destructure only arrays. `null` is still allowed |
-| 85i-float-int | Casting a float, or a numeric string that is a float, to `int` warns when the value is not an exact int. Explicit and implicit casts | `(int)`, `intval(` | `intdiv` / integer math, or accept the truncation knowingly. A string `"1.5"` used as an int array key or parameter also warns |
-| 85i-nan | Casting `NAN` to another type warns | `NAN` | Guard with `is_nan()` before the cast |
+| 85i-float-int | Casting a float, or a float string, to `int` warns when it is not representable as an int (`NAN`, `INF`, outside ±`PHP_INT_MAX`). `(int)1.5` still truncates silently | not a grep | Range-check floats from external input before the cast |
+| 85i-nan | Casting `NAN` to another type warns | not a grep | Guard with `is_nan()` before the cast |
 | 85i-attribute-target | `#[Attribute]` on an abstract class, enum, interface, or trait is a compile error. It used to fail later in `ReflectionAttribute::newInstance()` | `#[Attribute]` | Put the attribute on a concrete class, or add `#[\DelayedTargetValidation]` to keep the check at runtime |
 | 85i-bz | `bzcompress()` throws `ValueError` when `block_size` is outside 1–9 or `work_factor` is outside 0–250 | `bzcompress(` | Clamp the arguments |
 | 85i-dom-clone | Cloning `DOMNamedNodeMap`, `DOMNodeList`, `Dom\NamedNodeMap`, `Dom\NodeList`, `Dom\HTMLCollection`, `Dom\DtdNamedNodeMap` fails | `clone` on those | Do not clone them. They never produced a working object |
